@@ -1,6 +1,8 @@
 package repository
 
-import "github.com/AbdulrahmanDaud10/diveInputCalories/pkg/api"
+import (
+	"github.com/AbdulrahmanDaud10/diveInputCalories/pkg/api"
+)
 
 // Create a role
 func CreateRole(Role *api.Role) error {
