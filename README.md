@@ -34,3 +34,24 @@ Using the [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github
   - [ ] commands to set up the repo (dependencies etc.)
   - [ ] commands to run the test suite
   - [ ] commands to run the API server
+
+# Solution
+## Enviroment Varible example
+````
+Database credentials
+DB_HOST="localhost"
+DB_DRIVER=postgres
+DB_USER="<<DB_USER>>"
+DB_PASSWORD="<<DB_PASSWORD>>"
+DB_NAME="<<DB_NAME>>"
+DB_PORT="3306"
+
+# Default Admin User
+ADMIN_USERNAME="<<ADMIN_USERNAME>>"
+ADMIN_EMAIL="<<ADMIN_EMAIL>>"
+ADMIN_PASSWORD="<<ADMIN_PASSWORD>>"
+
+# Authentication credentials
+TOKEN_TTL="1800"
+JWT_PRIVATE_KEY="<<JWT_KEY>>"
+````
