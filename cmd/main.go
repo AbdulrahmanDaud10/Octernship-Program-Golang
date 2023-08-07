@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/AbdulrahmanDaud10/diveInputCalories/pkg/api"
+	"github.com/AbdulrahmanDaud10/diveInputCalories/pkg/app"
 	"github.com/AbdulrahmanDaud10/diveInputCalories/pkg/repository"
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
@@ -25,17 +24,10 @@ func LoadEnv() {
 	log.Println(".env file loaded successfully")
 }
 
-func serveApplication() {
-	router := gin.Default()
-
-	router.Run(":8000")
-	fmt.Println("Server running on port 8000")
-}
-
 func main() {
 	LoadEnv()
 
-	serveApplication()
+	app.ServeApplicationRoute()
 }
 
 // run database migrations and add seed data

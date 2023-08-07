@@ -20,3 +20,23 @@ type Role struct {
 	Name        string `gorm:"size:50;not null;unique" json:"name"`
 	Description string `gorm:"size:255;not null" json:"description"`
 }
+
+// Register model
+type Register struct {
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+// Login model
+type Login struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+// Update model
+type Update struct {
+	Username string `json:"username" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	RoleID   uint   `gorm:"not null" json:"role_id"`
+}

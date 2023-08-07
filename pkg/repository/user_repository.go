@@ -9,12 +9,12 @@ import (
 )
 
 // Save user details
-func Save(user *api.User) (*api.User, error) {
+func Save(user *api.User) error {
 	err := db.Create(&user).Error
 	if err != nil {
-		return &api.User{}, err
+		return err
 	}
-	return user, nil
+	return nil
 }
 
 // Generate encrypted password
@@ -48,7 +48,8 @@ func GetUserByUsername(username string) (api.User, error) {
 }
 
 // Validate user password
-func ValidateUserPassword(user *api.User, password string) error {
+func ValidateUserPassword(password string) error {
+	var user api.User
 	return bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 }
 
