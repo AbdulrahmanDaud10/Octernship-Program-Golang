@@ -35,14 +35,13 @@ func LoadDatabase() {
 	repository.InitDb()
 	db.AutoMigrate(&api.Role{})
 	db.AutoMigrate(&api.User{})
-	// Db.AutoMigrate(&api.Room{})
-	// Db.AutoMigrate(&api.Booking{})
+	// db.AutoMigrate(&api.Calories{})
 	seedData()
 }
 
 // load seed data into the database
 func seedData() {
-	var roles = []api.Role{{Name: "admin", Description: "Administrator role"}, {Name: "customer", Description: "Authenticated customer role"}, {Name: "visitor", Description: "Unauthenticated customer role"}}
+	var roles = []api.Role{{Name: "admin", Description: "Administrator role"}, {Name: "manager", Description: "Authenticated manager role"}, {Name: "user", Description: "Authenticated user role"}}
 	var user = []api.User{{Username: os.Getenv("ADMIN_USERNAME"), Email: os.Getenv("ADMIN_EMAIL"), Password: os.Getenv("ADMIN_PASSWORD"), RoleID: 1}}
 	db.Save(&roles)
 	db.Save(&user)

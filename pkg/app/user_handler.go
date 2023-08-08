@@ -32,19 +32,16 @@ func UserRegister(context *gin.Context) {
 		Role:     api.Role{},
 	}
 
-	savedUser, err := repository.Save()
+	savedUser, err := repository.Save(&user)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// BUG
-	fmt.Println("", user)
 	context.JSON(http.StatusCreated, gin.H{"user": savedUser})
 
 }
 
-// User Login
 // User Login
 func UserLogin(context *gin.Context) {
 	var input api.Login
@@ -62,7 +59,7 @@ func UserLogin(context *gin.Context) {
 		return
 	}
 
-	_, err := repository.GetUserByUsername(input.Username)
+	user, err := repository.GetUserByUsername(input.Username)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -76,6 +73,13 @@ func UserLogin(context *gin.Context) {
 		return
 	}
 
+	jwt, err := GenerateJWT(user)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"token": jwt, "username": input.Username, "message": "Successfully logged in"})
 }
 
 // get all users
