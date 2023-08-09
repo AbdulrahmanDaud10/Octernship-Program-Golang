@@ -9,12 +9,12 @@ import (
 )
 
 // Save user details
-func Save(user *api.User) error {
+func Save(user *api.User) (*api.User, error) {
 	err := db.Create(&user).Error
 	if err != nil {
-		return err
+		return &api.User{}, err
 	}
-	return nil
+	return user, nil
 }
 
 // Generate encrypted password
